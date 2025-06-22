@@ -2,43 +2,44 @@
 
 Website dan dashboard admin untuk Warung Seblak Teh Imas.
 
-## 🚀 Deployment ke Vercel
+## 🚀 Deployment ke Vercel (Solusi Error)
 
-### 1. Persiapan Repository
+### Jika deploy dari v0 berhasil tapi dari Git error:
 
-\`\`\`bash
-# Clone atau download project
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/username/warung-seblak.git
-git push -u origin main
-\`\`\`
+1. **Download code dari v0 yang berhasil**
+2. **Buat repository baru di GitHub**
+3. **Upload semua file dari v0 ke repository**
 
-### 2. Deploy ke Vercel
+### Atau perbaiki repository yang error:
 
-1. **Buka [vercel.com](https://vercel.com) dan login**
-2. **Klik "New Project"**
-3. **Import repository GitHub Anda**
-4. **Vercel akan otomatis detect Next.js - klik "Deploy"**
+1. **Pastikan file-file ini sesuai dengan v0:**
+   - `package.json` (check dependencies version)
+   - `next.config.js` (gunakan config sederhana)
+   - `tailwind.config.ts`
+   - `tsconfig.json`
 
-### 3. Setup Environment Variables
+2. **Hapus file yang menyebabkan error:**
+   - Hapus `vercel.json` jika ada
+   - Hapus `.vercel` folder jika ada
 
-Setelah deploy berhasil:
+3. **Push ulang ke GitHub:**
+   \`\`\`bash
+   git add .
+   git commit -m "Fix deployment config"
+   git push origin main
+   \`\`\`
 
-1. **Masuk ke Vercel Dashboard**
-2. **Pilih project Anda**
-3. **Go to Settings → Environment Variables**
-4. **Tambahkan variables berikut:**
+4. **Di Vercel:**
+   - Delete project yang error
+   - Import ulang dari GitHub
+   - Tambah environment variables
+   - Deploy
 
+### Environment Variables di Vercel:
 \`\`\`
 NEXT_PUBLIC_SUPABASE_URL=https://esoucbztyrkpssjhcmwh.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVzb3VjYnp0eXJrcHNzamhjbXdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA1OTcxODcsImV4cCI6MjA2NjE3MzE4N30.5nzHwWZDI70kSrgrcdMcpn-JXbIpSSLwnxz0DNWBHGo
 \`\`\`
-
-5. **Klik "Save"**
-6. **Redeploy project** (Deployments → klik titik 3 → Redeploy)
 
 ### 4. Setup Database
 
