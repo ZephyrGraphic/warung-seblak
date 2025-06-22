@@ -68,19 +68,29 @@ const menuItems = [
     title: "Pengaturan",
     icon: Settings,
   },
+  {
+    id: "profile",
+    title: "Profil Admin",
+    icon: User,
+  },
 ]
 
 export function AdminSidebar({ activeTab, onTabChange, onLogout, adminName }: AdminSidebarProps) {
   return (
-    <Sidebar>
-      <SidebarHeader>
-        <div className="flex items-center space-x-2 p-2">
-          <div className="w-8 h-8 bg-gradient-to-br from-[#e63946] to-[#f4a261] rounded-full flex items-center justify-center">
-            <Flame className="w-5 h-5 text-white" />
+    <Sidebar className="border-r-0 bg-gradient-to-b from-white to-gray-50 shadow-xl">
+      <SidebarHeader className="border-b border-red-100 bg-gradient-to-r from-red-50 to-orange-50">
+        <div className="flex items-center space-x-3 p-4">
+          <div className="relative">
+            <div className="w-10 h-10 bg-gradient-to-br from-red-500 via-orange-500 to-yellow-500 rounded-full flex items-center justify-center shadow-lg">
+              <Flame className="w-6 h-6 text-white" />
+            </div>
+            <div className="absolute -top-1 -right-1 w-4 h-4 bg-yellow-400 rounded-full animate-pulse"></div>
           </div>
           <div>
-            <h1 className="text-lg font-bold text-[#432818]">Admin Panel</h1>
-            <p className="text-xs text-[#e63946]">Warung Seblak</p>
+            <h1 className="text-xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
+              Admin Panel
+            </h1>
+            <p className="text-sm text-red-500 font-medium">Warung Seblak Premium</p>
           </div>
         </div>
       </SidebarHeader>
@@ -91,9 +101,15 @@ export function AdminSidebar({ activeTab, onTabChange, onLogout, adminName }: Ad
             <SidebarMenu>
               {menuItems.map((item) => (
                 <SidebarMenuItem key={item.id}>
-                  <SidebarMenuButton onClick={() => onTabChange(item.id)} isActive={activeTab === item.id}>
-                    <item.icon className="w-4 h-4" />
-                    <span>{item.title}</span>
+                  <SidebarMenuButton
+                    onClick={() => onTabChange(item.id)}
+                    isActive={activeTab === item.id}
+                    className={`transition-all duration-300 hover:bg-gradient-to-r hover:from-red-50 hover:to-orange-50 hover:text-red-600 ${
+                      activeTab === item.id ? "bg-gradient-to-r from-red-500 to-orange-500 text-white shadow-lg" : ""
+                    }`}
+                  >
+                    <item.icon className="w-5 h-5" />
+                    <span className="font-medium">{item.title}</span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
